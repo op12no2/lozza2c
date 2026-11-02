@@ -21,11 +21,13 @@ JavaScript is rewritten in a simpler way rather than the transpiler extended.
 | `embed_weights.js` | turns a weights `.bin` into `weights_blob.h` for a release build |
 | `build.sh` | transpile and build `lozza` (Linux) and `lozza.exe` (Windows) |
 | `test.sh` | checks the binaries against `node lozza.js` |
+| `sync.sh` | `build.sh` + `test.sh`, then commit and push the regenerated `lozza_core.c` |
 
 `lozza_core.c` is generated, but a copy is kept in the repo so the output can be read
-without building anything: it is the dev build of lozza.js at lozza commit 3afdcb8. `build.sh`
-overwrites it, so after a build it will differ from the committed version if lozza.js has
-changed. The other generated files (`weights_blob.h`, `lozza`, `lozza.exe`) are ignored by git.
+without building anything. Its first line names the lozza commit it was generated from.
+`build.sh` overwrites it on every run; `sync.sh` rebuilds, runs the tests, and commits and
+pushes the new file when it differs, so the repo copy is refreshed with one command and no
+editing. The other generated files (`weights_blob.h`, `lozza`, `lozza.exe`) are ignored by git.
 
 ## Requirements
 
@@ -44,6 +46,7 @@ The lozza repo is expected next to this one as `../lozza`. Point elsewhere with 
 ./build.sh weights.bin x.js     # release build from another source file
 ./test.sh                       # compare ./lozza and ./lozza.exe with node ../lozza/lozza.js
 LOZZA=/path/lozza.js ./test.sh  # compare against another source
+./sync.sh                       # after a lozza.js commit: rebuild, test, commit and push lozza_core.c
 ```
 
 The lozza repo's `bin/release.sh` calls `../lozza2c/build.sh` with the release weights and the
