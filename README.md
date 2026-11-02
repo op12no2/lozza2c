@@ -8,7 +8,7 @@ count, same search output, same datagen, just faster.
 This is not a general JavaScript to C tool. It converts the subset of JavaScript that
 Lozza is written in (int32 arithmetic, typed arrays, plain functions, strings only at
 the UCI edge) and nothing more. If a construct in lozza.js is awkward to convert, the
-JavaScript is rewritten in a simpler way rather than the transpiler extended.
+JavaScript is rewritten in a simpler way rather than the transpiler extended; for example the TT.
 
 ## Files
 
@@ -22,10 +22,10 @@ JavaScript is rewritten in a simpler way rather than the transpiler extended.
 | `build.sh` | transpile and build `lozza` (Linux) and `lozza.exe` (Windows) |
 | `test.sh` | checks the binaries against `node lozza.js` |
 
-`lozza_core.c` is generated, but a snapshot is kept in the repo so the output can be read
-without building anything. It is refreshed now and then, not on every change; its first line
-names the lozza commit it was generated from. The other generated files (`weights_blob.h`,
-`lozza`, `lozza.exe`) are ignored by git.
+`lozza_core.c` is generated, but a snapshot retained for interest. 
+It is refreshed now and then, not on every change; its first line
+names the lozza commit it was generated from. 
+The other generated files (`weights_blob.h`, `lozza`, `lozza.exe`) are ignored by git.
 
 ## Requirements
 
