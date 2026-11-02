@@ -40,8 +40,11 @@ clang $CFLAGS -o lozza runtime_uci.c -lm
 X=~/.cache/cargo-xwin/xwin
 
 # -w: the windows sdk headers are noisy under clang and none of it is ours
+# /Brepro: a content hash instead of a timestamp in the PE header, so the same source
+# gives the same exe; Windows Smart App Control judges each new hash afresh and has
+# blocked an otherwise identical build, a stable hash means a stable verdict
 
-clang --target=x86_64-pc-windows-msvc -fuse-ld=lld $CFLAGS -w \
+clang --target=x86_64-pc-windows-msvc -fuse-ld=lld $CFLAGS -w -Wl,/Brepro \
   -I$X/crt/include -I$X/sdk/include/ucrt -I$X/sdk/include/um -I$X/sdk/include/shared \
   -L$X/crt/lib/x86_64 -L$X/sdk/lib/um/x86_64 -L$X/sdk/lib/ucrt/x86_64 \
   runtime_uci.c -o lozza.exe
