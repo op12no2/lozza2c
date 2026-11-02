@@ -22,7 +22,10 @@ JavaScript is rewritten in a simpler way rather than the transpiler extended.
 | `build.sh` | transpile and build `lozza` (Linux) and `lozza.exe` (Windows) |
 | `test.sh` | checks the binaries against `node lozza.js` |
 
-Generated files (`lozza_core.c`, `weights_blob.h`, `lozza`, `lozza.exe`) are ignored by git.
+`lozza_core.c` is generated, but a copy is kept in the repo so the output can be read
+without building anything: it is the dev build of lozza.js at lozza commit 3afdcb8. `build.sh`
+overwrites it, so after a build it will differ from the committed version if lozza.js has
+changed. The other generated files (`weights_blob.h`, `lozza`, `lozza.exe`) are ignored by git.
 
 ## Requirements
 
