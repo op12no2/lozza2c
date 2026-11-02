@@ -1,7 +1,7 @@
 # lozza2c
 
 Builds native Linux and Windows binaries of the [Lozza](https://github.com/op12no2/lozza)
-chess engine from its JavaScript source. `lozza.js` is parsed with acorn, converted to C
+chess engine from its JavaScript source. `lozza.js` is parsed with [acorn](https://github.com/acornjs/acorn), converted to C
 and compiled with clang. The result plays identically to `node lozza.js`: same bench node
 count, same search output, same datagen, just faster.
 
